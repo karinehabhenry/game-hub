@@ -1,5 +1,6 @@
-import { Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
+import { Button, Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
 import NavBar from "./component/NavBar";
+import { useColorMode } from "./components/ui/color-mode";
 
 const App = () => {
   return (
