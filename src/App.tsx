@@ -21,7 +21,7 @@ const App = () => {
       </GridItem>
       {useBreakpointValue({
         base: null,
-        lg: <GridItem area="aside" paddingX={5}><GenreList onSelectGenre={setSelectedGenre} /></GridItem>,
+        lg: <GridItem area="aside" paddingX={5}><GenreList selectedGenre={selectedGenre} onSelectGenre={setSelectedGenre} /></GridItem>,
       })}
       <GridItem area="main">
         <GameGrid selectedGenre={selectedGenre}/>
