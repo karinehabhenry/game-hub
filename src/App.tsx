@@ -3,8 +3,11 @@ import NavBar from "./component/NavBar";
 import { useColorMode } from "./components/ui/color-mode";
 import GameGrid from "./component/GameGrid";
 import GenreList from "./component/GenreList";
+import { useState } from "react";
+import { Genre } from "./hooks/useGenres";
 
 const App = () => {
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   return (
     <Grid
       templateAreas={{
@@ -18,10 +21,10 @@ const App = () => {
       </GridItem>
       {useBreakpointValue({
         base: null,
-        lg: <GridItem area="aside" paddingX={5}><GenreList/></GridItem>,
+        lg: <GridItem area="aside" paddingX={5}><GenreList onSelectGenre={setSelectedGenre} /></GridItem>,
       })}
       <GridItem area="main">
-        <GameGrid />
+        <GameGrid selectedGenre={selectedGenre}/>
       </GridItem>
     </Grid>
   );
