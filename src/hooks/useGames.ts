@@ -3,6 +3,7 @@ import apiClient from "@/services/api-client";
 import { CanceledError } from "axios";
 import useData from "./useData";
 import { Genre } from "./useGenres";
+import { GameQuery } from "@/App";
 
 export interface Platform {
   id: number;
@@ -26,15 +27,19 @@ export interface Game {
 // }
 
 const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null
+  // selectedGenre: Genre | null,
+  // selectedPlatform: Platform | null
+  GameQuery:GameQuery
 ) =>
   useData<Game>(
     "/games",
-    { params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id } },
+    { params: { genres: GameQuery.genre?.id, platforms: GameQuery.platform?.id } },
 
     //array of dependencies
-    [selectedGenre?.id, selectedPlatform?.id]
+    // [selectedGenre?.id, selectedPlatform?.id]
+
+    //array of dependencies
+    [GameQuery]
   );
 
 //Instead of this codde we will use useData hook as a general hook for fetching data
