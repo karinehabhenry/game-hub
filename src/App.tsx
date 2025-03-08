@@ -1,14 +1,15 @@
 import { Button, Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
 import NavBar from "./component/NavBar";
-import { useColorMode } from "./components/ui/color-mode";
 import GameGrid from "./component/GameGrid";
 import GenreList from "./component/GenreList";
 import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
 import PlatfromSelector from "./component/PlatfromSelector";
+import { Platform } from "./hooks/useGames";
 
 const App = () => {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
   return (
     <Grid
       templateAreas={{
@@ -25,8 +26,8 @@ const App = () => {
         lg: <GridItem area="aside" paddingX={5}><GenreList selectedGenre={selectedGenre} onSelectGenre={setSelectedGenre} /></GridItem>,
       })}
       <GridItem area="main">
-        <PlatfromSelector />
-        <GameGrid selectedGenre={selectedGenre}/>
+        <PlatfromSelector selectedPlatform={selectedPlatform} onSelectPlatform={setSelectedPlatform} />
+        <GameGrid selectedPlatform={selectedPlatform} selectedGenre={selectedGenre}/>
       </GridItem>
     </Grid>
   );

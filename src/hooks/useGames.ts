@@ -5,16 +5,16 @@ import useData from "./useData";
 import { Genre } from "./useGenres";
 
 export interface Platform {
-    id: number;
-    name: string;
-    slug: string;
+  id: number;
+  name: string;
+  slug: string;
 }
 
 export interface Game {
   id: number;
   name: string;
   background_image: string;
-  parent_platforms: {platform: Platform}[];
+  parent_platforms: { platform: Platform }[];
   metacritic: number;
 }
 
@@ -25,9 +25,19 @@ export interface Game {
 //   results: Game[];
 // }
 
-const useGames = (selectedGenre: Genre | null) =>  useData<Game>('/games', {params: {genres: selectedGenre?.id}}, [selectedGenre?.id]);
-    
-    //Instead of this codde we will use useData hook as a general hook for fetching data
+const useGames = (
+  selectedGenre: Genre | null,
+  selectedPlatform: Platform | null
+) =>
+  useData<Game>(
+    "/games",
+    { params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id } },
+
+    //array of dependencies
+    [selectedGenre?.id, selectedPlatform?.id]
+  );
+
+//Instead of this codde we will use useData hook as a general hook for fetching data
 //     {
 //   const [games, setGames] = useState<Game[]>([]);
 //   const [error, setError] = useState(null);
