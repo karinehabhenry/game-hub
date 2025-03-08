@@ -1,5 +1,4 @@
 import { Button, MenuContent, MenuItem, MenuRoot, MenuTrigger } from '@chakra-ui/react'
-import React from 'react'
 
 interface Props {
     onSelectSortOrder: (sortOrder: string) => void;
