@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { CanceledError } from "axios";
 import apiClient from "@/services/api-client";
-import useData from "./useData";
-
+// import useData from "./useData";
+import genres from "../data/genres";
 export interface Genre{
     id: number;
     name: string;   
@@ -14,7 +14,12 @@ export interface Genre{
 //     results: Genre[];
 // }
 
-const useGenres = () =>  useData<Genre>('/genres');
+
+//Dynamic Data Fetching
+// const useGenres = () =>  useData<Genre>('/genres');
+
+//Static Data Fetching
+const useGenres = () => ({data:genres, loading:false, error:null});
 
 
     //Instead of this codde we will use useData hook as a general hook for fetching data
